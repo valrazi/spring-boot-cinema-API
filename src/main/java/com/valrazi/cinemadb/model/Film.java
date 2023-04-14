@@ -13,7 +13,7 @@ public class Film {
     //TODO FIX ILEGAL ATTEMP FILM CODE
 
     @Id
-    @Column(name = "film_Code", updatable = false)
+    @Column(name = "film_Code", updatable = false, insertable = false)
     private String filmCode = Uuid.uuidGenerator();
 
 
@@ -23,7 +23,7 @@ public class Film {
     @Column(name = "airing_status")
     private Boolean airingStatus;
 
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at", updatable = false, insertable = false)
     private LocalDate createdAt = LocalDate.now();
 
 }

@@ -22,13 +22,13 @@ public class FilmController {
     public ResponseEntity<Object> addNewFilm(@RequestBody Film newFilm){
         return service.addFilm(newFilm);
     }
-    @DeleteMapping("/{uname}")
-    public ResponseEntity<Object> removeFilm(@PathVariable String uname){
-        return service.deleteFilm(uname);
+    @DeleteMapping("/{filmCode}")
+    public ResponseEntity<Object> removeFilm(@PathVariable String filmCode){
+        return service.deleteFilm(filmCode);
     }
-    @PatchMapping("/{uname}")
-    public ResponseEntity<Object> updateFilm(@PathVariable String uname, @RequestBody Film film){
-        return service.updateFilm(uname, film);
+    @PatchMapping("/{filmCode}")
+    public ResponseEntity<Object> updateFilm(@PathVariable String filmCode, @RequestBody Film film){
+        return service.updateFilm(filmCode, film);
     }
 
     @GetMapping("/nowshow")
