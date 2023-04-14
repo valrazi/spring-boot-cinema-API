@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Data
 @Table(name = "films")
 public class Film {
-    //TODO FIX ILEGAL ATTEMP FILM CODE
 
     @Id
     @Column(name = "film_Code", updatable = false, insertable = false)

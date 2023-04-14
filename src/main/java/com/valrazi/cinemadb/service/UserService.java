@@ -69,7 +69,6 @@ public class UserService {
         Optional<User> userFound = repo.findById(uname);
         if(userFound.isPresent()){
             User updateUser = userFound.get();
-            updateUser.setUname(user.getUname());
             updateUser.setEmail(user.getEmail());
             updateUser.setPassword(user.getPassword());
             return handler.generateResponse("success", HttpStatus.OK, repo.save(updateUser));

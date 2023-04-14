@@ -86,7 +86,7 @@ public class FilmService {
         }
     }
 
-    //GET FILM THAT AIRING STATUS IS TRUE
+    //GET FILM THAT AIRING STATUS IS false
     public ResponseEntity<Object> getComingSoonFilm(){
         try{
             List<Film> arrFilm = repo.getComingSoonFilms();
