@@ -6,6 +6,7 @@ import com.valrazi.cinemadb.model.Schedules;
 import com.valrazi.cinemadb.repository.FilmRepository;
 import com.valrazi.cinemadb.repository.SchedulesRepository;
 import com.valrazi.cinemadb.response.ResponseHandler;
+import com.valrazi.cinemadb.utils.Uuid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,8 @@ public class FilmService {
 
     @Autowired
     SchedulesRepository scheduleRepo;
+
+
 
     //GET FILM SCHEDULES
     public ResponseEntity<Object> getBySchedules(String filmCode){
@@ -102,6 +105,16 @@ public class FilmService {
             return ResponseHandler.generateResponse("failed", HttpStatus.BAD_REQUEST, null);
         }
     }
+
+    //ADD NEW SCHEDULES
+    public ResponseEntity<Object> addNewSchedule(Schedules schedules){
+        try{
+            return ResponseHandler.generateResponse("success", HttpStatus.OK, scheduleRepo.save(schedules));
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST, null);
+        }
+    }
+
 
 
 }

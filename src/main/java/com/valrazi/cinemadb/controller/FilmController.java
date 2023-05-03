@@ -46,5 +46,12 @@ public class FilmController {
     public ResponseEntity<Object> getAllSchedule(@PathVariable String filmCode){
         return service.getBySchedules(filmCode);
     }
+
+    @PostMapping("/schedules")
+    public ResponseEntity<Object> addNewSchedules(@RequestBody Schedules schedules){
+        return service.addNewSchedule(schedules);
+    }
+
+
 }
 

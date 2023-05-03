@@ -19,10 +19,9 @@ public class Schedules {
     @Column(name = "schedule_id", updatable = false)
     private String scheduleId = Uuid.uuidGenerator();
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "film_code", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Film film;
 
     @Column(name = "showing_date")
@@ -34,4 +33,7 @@ public class Schedules {
 
     @Column(name = "ticket_price")
     private int ticketPrice;
+
+    @Column(name = "studio_name")
+    private String studioName;
 }
