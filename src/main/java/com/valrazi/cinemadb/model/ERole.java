@@ -1,0 +1,6 @@
+package com.valrazi.cinemadb.model;
+
+public enum ERole {
+    ROLE_USER,
+    ROLE_ADMIN
+}

@@ -25,12 +25,12 @@ public class UserController {
         return service.addNewUser(newUser);
     }
     @DeleteMapping("/{uname}")
-    public ResponseEntity<Object> deleteUser(@PathVariable String uname){
+    public ResponseEntity<Object> deleteUser(@PathVariable Long uname){
         return service.deleteUser(uname);
     }
 
     @PatchMapping("/{uname}")
-    public ResponseEntity<Object> updateUser(@PathVariable String uname, @RequestBody User user){
+    public ResponseEntity<Object> updateUser(@PathVariable Long uname, @RequestBody User user){
         return service.updateUser(uname, user);
     }
 }

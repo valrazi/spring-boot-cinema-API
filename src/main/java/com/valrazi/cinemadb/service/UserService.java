@@ -36,7 +36,7 @@ public class UserService {
 
     //ADD USER
     public ResponseEntity<Object> addNewUser(User newUser){
-        Optional<User> userExist = repo.findByUsername(newUser.getUname());
+        Optional<User> userExist = repo.findByUname(newUser.getUname());
         if(userExist.isPresent()){
             return handler.generateResponse("failed", HttpStatus.CONFLICT, null);
 
@@ -55,7 +55,7 @@ public class UserService {
     }
 
     //DELETE USER
-    public ResponseEntity<Object> deleteUser(String uname){
+    public ResponseEntity<Object> deleteUser(Long uname){
         try{
             repo.deleteById(uname);
             return handler.generateResponse("success", HttpStatus.OK, null);
@@ -65,7 +65,7 @@ public class UserService {
     }
 
     //UPDATE USER
-    public ResponseEntity<Object> updateUser(String uname, User user){
+    public ResponseEntity<Object> updateUser(Long uname, User user){
         Optional<User> userFound = repo.findById(uname);
         if(userFound.isPresent()){
             User updateUser = userFound.get();
