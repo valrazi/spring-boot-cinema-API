@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -29,6 +30,10 @@ public class Booking {
     @JoinColumn(name = "schedule_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Schedules schedules;
+
+
+    @Column(name = "created_at")
+    private LocalDate createdAt = LocalDate.now();
 
 
 }

@@ -20,4 +20,9 @@ public class BookingController {
     public ResponseEntity<Object> addNewBooking(@RequestBody Booking booking){
         return bookingService.addNewBooking(booking);
     }
+
+    @GetMapping("/detail/{bookingCode}")
+    public ResponseEntity<Object> getDetailBooking(@PathVariable String bookingCode){
+        return bookingService.getBookingDetail(bookingCode);
+    }
 }
