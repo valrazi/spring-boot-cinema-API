@@ -21,8 +21,8 @@ public class Booking {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Seat seat;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "email", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "email")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 

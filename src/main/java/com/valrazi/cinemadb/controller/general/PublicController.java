@@ -1,4 +1,4 @@
-package com.valrazi.cinemadb.controller;
+package com.valrazi.cinemadb.controller.general;
 
 import com.valrazi.cinemadb.DTO.JwtResponse;
 import com.valrazi.cinemadb.DTO.LoginRequest;
@@ -11,6 +11,7 @@ import com.valrazi.cinemadb.repository.RoleRepository;
 import com.valrazi.cinemadb.repository.UserRepository;
 import com.valrazi.cinemadb.security.jwt.JwtUtils;
 import com.valrazi.cinemadb.security.services.UserDetailsImpl;
+import com.valrazi.cinemadb.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,8 +29,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/auth")
-public class AuthController {
+@RequestMapping("/public")
+public class PublicController {
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -44,6 +45,9 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    @Autowired
+    FilmService service;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
@@ -105,5 +109,24 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
+    //GET NOW SHOWING FILM
+    @GetMapping("/schedules/nowshow")
+    public ResponseEntity<Object> getFilmNowShow(){
+        return service.getFilmNowShowing();
+    }
+
+    //GET COMING SOON FILM
+    @GetMapping("/schedules/comingsoon")
+    public ResponseEntity<Object> getComingSoon(){
+        return service.getComingSoonFilm();
+    }
+
+
+
+    //GET FILM SCHEDULE
+    @GetMapping("/schedules/{filmCode}")
+    public ResponseEntity<Object> getAllSchedule(@PathVariable String filmCode){
+        return service.getBySchedules(filmCode);
+    }
 
 }

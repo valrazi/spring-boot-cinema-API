@@ -6,6 +6,7 @@ import com.valrazi.cinemadb.response.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,10 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepository repo;
+
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     ResponseHandler handler = new ResponseHandler();
 
@@ -70,7 +75,7 @@ public class UserService {
         if(userFound.isPresent()){
             User updateUser = userFound.get();
             updateUser.setEmail(user.getEmail());
-            updateUser.setPassword(user.getPassword());
+            updateUser.setPassword(passwordEncoder.encode(user.getPassword()));
             return handler.generateResponse("success", HttpStatus.OK, repo.save(updateUser));
 
         }else{
