@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.*;
@@ -40,6 +41,7 @@ public class FilmService {
 
 
     //POST FILM
+    @Transactional
     public ResponseEntity<Object> addFilm(Film newFilm){
         try{
             repo.save(newFilm);
@@ -60,6 +62,7 @@ public class FilmService {
     }
 
     //UPDATE FILM
+    @Transactional
     public ResponseEntity<Object> updateFilm(String id, Film film){
         Optional<Film> filmFound = repo.findById(id);
         if(filmFound.isPresent()){
@@ -107,6 +110,7 @@ public class FilmService {
     }
 
     //ADD NEW SCHEDULES
+    @Transactional
     public ResponseEntity<Object> addNewSchedule(Schedules schedules){
         try{
             return ResponseHandler.generateResponse("success", HttpStatus.OK, scheduleRepo.save(schedules));

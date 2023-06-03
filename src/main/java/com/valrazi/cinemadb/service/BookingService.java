@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -55,6 +56,7 @@ public class BookingService {
     }
 
     //add booking
+    @Transactional
     public  ResponseEntity<Object> addNewBooking(String token, Booking booking){
         try{
             String jwtToken = token.substring(7, token.length());

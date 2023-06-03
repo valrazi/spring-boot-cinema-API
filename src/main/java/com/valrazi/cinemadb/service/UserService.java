@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class UserService {
     }
 
     //ADD USER
+    @Transactional
     public ResponseEntity<Object> addNewUser(User newUser){
         Optional<User> userExist = repo.findByUname(newUser.getUname());
         if(userExist.isPresent()){
@@ -70,6 +72,7 @@ public class UserService {
     }
 
     //UPDATE USER
+    @Transactional
     public ResponseEntity<Object> updateUser(Long uname, User user){
         Optional<User> userFound = repo.findById(uname);
         if(userFound.isPresent()){
